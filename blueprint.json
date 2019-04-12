@@ -15,12 +15,39 @@
         "level": "alpha",
         "patch": 0
       }
-    }
+    },
+    "timestamp": "2019-04-12T15:04:00+10:00"
   },
   "software": {
     "base": {
+      "name": "fastapi",
+      "framework": "python",
       "deployment_type": "web",
-      "http_protocol": "https_and_http"
-    }
+      "http_protocol": "https_and_http",
+      "framework_port_override": 8000,
+      "memory": {
+        "required": 128,
+        "recommended": 190
+      }
+    },
+    "scripts": {
+      "start": {
+        "content": "#!/bin/sh\r\n\r\nPATH=$PATH:/home/app/.local/bin/\r\nexport PATH\r\n. /home/app/venv/bin/activate\r\ncd /home/app\r\n\r\nuvicorn main:app \r\n"
+      },
+      "first_run": {
+        "language": "sh"
+      }
+    },
+    "system_packages": [
+      {
+        "package": "python3.7-dev"
+      }
+    ],
+    "required_modules": [
+      {
+        "name": "fastapi",
+        "type": "python"
+      }
+    ]
   }
 }
